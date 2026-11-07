@@ -1,0 +1,10 @@
+#!/bin/sh
+# markov — 2nd-order Markov chain trained on Raiden Shogun
+# usage:
+#   markov                       5 sentences
+#   markov 10                    10 sentences
+#   markov "the shogun"          continue from a seed phrase
+#   markov "the shogun" 3        seed + count (quoted or bare both work)
+DIR="$(cd "$(dirname "$0")" && pwd)"
+[ "$#" -eq 0 ] && set -- 5
+exec swipl -q "$DIR/src/markov.pl" -- "$@"
